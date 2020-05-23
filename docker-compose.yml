@@ -8,14 +8,18 @@ services:
       # - 443:443 # To enable SSL, uncomment this line. See "Enable SSL" below.
     depends_on:
       - postgres
+      - events
+      - rabbit 
+      - redis
 
       # To enable taiga-events, uncomment the following lines:
       # - events
       # - rabbit
       # - redis
+    restart: always
     environment:
       # Hostname for your instance of Taiga. Required.
-      TAIGA_HOSTNAME: localhost
+      TAIGA_HOSTNAME: taiga.roost.com
 
       # Database variables. Required.
       TAIGA_DB_HOST: postgres
@@ -31,6 +35,13 @@ services:
 
       # Enable SSL externally, preferred method
       # TAIGA_SSL_BY_REVERSE_PROXY: 'True'
+      TAIGA_ENABLE_EMAIL: 'True'
+      TAIGA_EMAIL_FROM: no-reply@taiga.roost.com
+      TAIGA_EMAIL_USE_TLS: 'True'
+      TAIGA_EMAIL_HOST: smtp.google.com
+      TAIGA_EMAIL_PORT: 587
+      TAIGA_EMAIL_USER: daniel.eagy@gmail.com
+      TAIGA_EMAIL_PASS: Ygae.DJE-1989
     volumes:
       # Media and uploads directory. Required (or you will lose all uploads)
       - ./media:/usr/src/taiga-back/media
@@ -52,19 +63,19 @@ services:
 
 
   # To enable taiga-events, uncomment the following lines:
-  # rabbit:
-  #   image: rabbitmq:3
-  #   hostname: rabbit
-  # 
-  # redis:
-  #   image: redis:3
-  # 
-  # celery:
-  #   image: celery
-  #   links:
-  #     - rabbit
-  # 
-  # events:
-  #   image: benhutchins/taiga-events
-  #   links:
-  #     - rabbit
+  rabbit:
+    image: rabbitmq:3
+    hostname: rabbit
+  
+  redis:
+    image: redis:3
+  
+  celery:
+    image: celery
+    links:
+      - rabbit
+  
+  events:
+    image: benhutchins/taiga-events
+    links:
+      - rabbit
