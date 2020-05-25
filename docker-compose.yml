@@ -35,13 +35,13 @@ services:
 
       # Enable SSL externally, preferred method
       # TAIGA_SSL_BY_REVERSE_PROXY: 'True'
-      TAIGA_ENABLE_EMAIL: 'True'
-      TAIGA_EMAIL_FROM: no-reply@taiga.roost.com
-      TAIGA_EMAIL_USE_TLS: 'True'
-      TAIGA_EMAIL_HOST: smtp.google.com
-      TAIGA_EMAIL_PORT: 587
-      TAIGA_EMAIL_USER: daniel.eagy@gmail.com
-      TAIGA_EMAIL_PASS: Ygae.DJE-1989
+      # TAIGA_ENABLE_EMAIL: 'True'
+      # TAIGA_EMAIL_FROM: 'daniel.eagy@gmail.com'
+      # TAIGA_EMAIL_USE_TLS: 'True'
+      # TAIGA_EMAIL_HOST: 'smtp.google.com'
+      # TAIGA_EMAIL_PORT: 587
+      # TAIGA_EMAIL_USER: 'daniel.eagy@gmail.com'
+      # TAIGA_EMAIL_PASS: 'Ygae.DJE-1989'
     volumes:
       # Media and uploads directory. Required (or you will lose all uploads)
       - ./media:/usr/src/taiga-back/media

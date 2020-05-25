@@ -9,7 +9,12 @@ from .docker import *
 PUBLIC_REGISTER_ENABLED = False
 DEBUG = False
 TEMPLATE_DEBUG = False
-
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'daniel.eagy@gmail.com'
+EMAIL_HOST_PASSWORD = 'Ygae.DJE-1989'
 ## Slack
 # https://github.com/taigaio/taiga-contrib-slack
 INSTALLED_APPS += ["taiga_contrib_slack"]
