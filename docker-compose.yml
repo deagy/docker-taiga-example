@@ -19,7 +19,7 @@ services:
     restart: always
     environment:
       # Hostname for your instance of Taiga. Required.
-      TAIGA_HOSTNAME: taiga.roost.com
+      TAIGA_HOSTNAME: taiga.animus.com
 
       # Database variables. Required.
       TAIGA_DB_HOST: postgres
